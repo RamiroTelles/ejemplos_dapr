@@ -1,0 +1,15 @@
+syntax = "proto3";
+option go_package = "hello-world-grpc/invoicer";
+
+service invoicer {
+    rpc Create(CreateRequest) returns (CreateResponse);
+
+}
+
+message CreateRequest {
+    string message = 1;
+}
+
+message CreateResponse{
+    bool success =1;
+}
