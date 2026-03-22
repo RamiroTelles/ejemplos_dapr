@@ -35,7 +35,7 @@ func main() {
 	service := &myInvoicerServer{}
 
 	invoicer.RegisterInvoicerServer(server, service)
-	log.Println("Server escuchando en 8089")
+	log.Println("Server escuchando en 50051")
 	err1 := server.Serve(list)
 	if err1 != nil {
 		log.Fatalf("error al montar server, %s", err1)
