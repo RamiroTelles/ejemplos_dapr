@@ -1,0 +1,35 @@
+# Ejemplo pub/sub con go en dapr
+
+## Como correr ejemplo en local
+
+Se levanta el consumer con el siguiente comando en la carpeta publisher
+
+```bash
+dapr run --app-port 6005 --app-id consumer --app-protocol http --dapr-http-port 3501 --resources-path ../broker -- go run .
+```
+
+Se lenvanta el publisher con el siguiente comando en la carpeta consumer
+
+```bash
+dapr run --app-id publisher --app-protocol http --dapr-http-port 3500 --resources-path ../broker  -- go run .
+```
+
+## Broker
+
+Se usa el broker que se inicializa por defecto junto con redis en el ecosistema local, luego se configura con el pubsub.yaml encontrado en broker/
+
+```yaml
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: votacionpubsub
+spec:
+  type: pubsub.redis
+  version: v1
+  metadata:
+  - name: redisHost
+    value: localhost:6379
+  - name: redisPassword
+    value: ""
+```
+
